@@ -98,4 +98,5 @@ ENV/
 /site
 
 # mypy
+.idea
 .mypy_cache/
