@@ -3,6 +3,9 @@ from docker.errors import NotFound
 
 
 def start_sql(name, db_name, local_port):
+    '''
+
+    '''
     client = docker.from_env()
     try:
         container = client.containers.get(name)
