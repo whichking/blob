@@ -17,8 +17,8 @@ base = declarative_base()
 PostTagLinks = Table(
     'post_tag_links',
     Base.metadata,
-    Column('post_id', Integer, ForeignKey(blog_posts.id)),
-    Column('tag_id', Integer, ForeignKey(tags.id))
+    Column('post_id', Integer, ForeignKey('blog_posts.id')),
+    Column('tag_id', Integer, ForeignKey('tags.id'))
 )
 
 
@@ -31,7 +31,7 @@ class BlogPost(Base):
     content = Column(Text)
     tags = relationship(
         'Tag',
-        back_populates='blog_posts',
+        back_populates='posts',
         secondary='post_tag_links'
     )
 
