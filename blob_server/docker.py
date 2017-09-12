@@ -1,8 +1,12 @@
+
+from time import sleep
+from typing import Union
+
 import docker
 from docker.errors import NotFound
 
 
-def start_sql(name: str, db_name: str, local_port: int) -> None:
+def start_sql(name: str, db_name: str, local_port: Union[str, int]) -> None:
     """Start the SQL container
 
     :param name: the name of the SQL container
@@ -14,16 +18,16 @@ def start_sql(name: str, db_name: str, local_port: int) -> None:
         container = client.containers.get(name)
     except docker.errors.NotFound:
         container = client.containers.run(
-            'postgres',
+            'postgres:9.6',
             name=name,
             detach=True,
-            ports={3306: local_port},
-            environment={'POSTGRES_PASSWORD': 'test_pg_pw',
-                         'POSTGRES_USER': 'pg_user',
+            ports={5432: local_port},
+            environment={'POSTGRES_PASSWORD': 'test_blob_pw',
+                         'POSTGRES_USER': 'blob_user',
                          'POSTGRES_DB': db_name}
         )
-    else:
-        container.start()
+        sleep(5)
+    container.start()
 
 
 def stop_sql(name: str) -> None:
