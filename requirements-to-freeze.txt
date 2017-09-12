@@ -4,5 +4,6 @@ flask-admin
 flask-restful
 flask-script
 marshmallow
+psycopg2
 sqlalchemy
 docker
