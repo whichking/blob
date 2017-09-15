@@ -1,6 +1,7 @@
 alembic
 flask
 flask-admin
+flask-migrate
 flask-restful
 flask-script
 marshmallow

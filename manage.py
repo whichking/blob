@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
 from os import environ
+
+from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager, Server
 from subprocess import Popen
+
 
 SQL_CONTAINER_NAME = 'blob_sql_dev'
 SQL_PORT = '5433'
@@ -25,13 +28,20 @@ update_environment()
 
 from blob_server.app import create_app
 from blob_server.app_config import DevConfig
-from blob_server.docker import start_sql, stop_sql, remove_sql
+from blob_server.database import db_uri
+from blob_server.models import Base
 
 
 app = create_app(DevConfig)
 manager = Manager(app)
 
+manager.add_command('db', MigrateCommand)
+
 manager.add_command('runserver', Server(host='0.0.0.0', port=8080))
+
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri()
+
+migrate = Migrate(app, Base)
 
 
 @manager.command
