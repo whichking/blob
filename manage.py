@@ -45,14 +45,26 @@ migrate = Migrate(app, Base)
 
 
 @manager.command
-def start():
+def up():
     process = Popen(['docker-compose', 'up'], env=dict(environ))
     process.communicate()
 
 
 @manager.command
-def stop():
+def start():
+    process = Popen(['docker-compose', 'start'], env=dict(environ))
+    process.communicate()
+
+
+@manager.command
+def down():
     process = Popen(['docker-compose', 'down'], env=dict(environ))
+    process.communicate()
+
+
+@manager.command
+def stop():
+    process = Popen(['docker-compose', 'stop'], env=dict(environ))
     process.communicate()
 
 
