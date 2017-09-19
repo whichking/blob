@@ -43,7 +43,7 @@ class Tag(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(32))
     posts = relationship(
-        'Post',
+        'BlogPost',
         back_populates='tags',
         secondary='post_tag_links'
     )
