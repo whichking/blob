@@ -36,12 +36,11 @@ class BlogPost(Base):
 
     @property
     def serializable(self) -> dict:
-        tags = [{'id': t.id, 'name': t.name} for t in self.tags]
         return {
             'id': self.id,
             'created': self.created,
             'content': self.content,
-            'tags': tags,
+            'tags': [{'id': t.id, 'name': t.name} for t in self.tags]
         }
 
 
@@ -58,9 +57,8 @@ class Tag(Base):
 
     @property
     def serializable(self) -> dict:
-        posts = [{'id': p.id, 'created': p.created, 'content': p.content} for p in self.posts]
         return {
             'id': self.id,
             'name': self.name,
-            'posts': posts,
+            'posts': [{'id': p.id} for p in self.posts]
         }
