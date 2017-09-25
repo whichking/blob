@@ -25,7 +25,6 @@ PostTagLinks = Table(
 class BlogPost(Base):
     """An entry containing the created date and the content of text"""
     __tablename__ = 'blog_posts'
-
     id = Column(Integer, primary_key=True)
     created = Column(DateTime(timezone=True), server_default=func.now())
     content = Column(Text)
@@ -35,11 +34,19 @@ class BlogPost(Base):
         secondary='post_tag_links'
     )
 
+    @property
+    def serializable(self) -> dict:
+        return {
+            'id': self.id,
+            'created': self.created,
+            'content': self.content,
+            'tags': [{'id': t.id, 'name': t.name} for t in self.tags]
+        }
+
 
 class Tag(Base):
     """A tag indicating the subject of a blog post"""
     __tablename__ = 'tags'
-
     id = Column(Integer, primary_key=True)
     name = Column(String(32))
     posts = relationship(
@@ -47,3 +54,11 @@ class Tag(Base):
         back_populates='tags',
         secondary='post_tag_links'
     )
+
+    @property
+    def serializable(self) -> dict:
+        return {
+            'id': self.id,
+            'name': self.name,
+            'posts': [{'id': p.id} for p in self.posts]
+        }
