@@ -38,7 +38,7 @@ class BlogPost(Base):
     def serializable(self) -> dict:
         return {
             'id': self.id,
-            'created': self.created,
+            'created': self.created.isoformat(),
             'content': self.content,
             'tags': [{'id': t.id, 'name': t.name} for t in self.tags]
         }
