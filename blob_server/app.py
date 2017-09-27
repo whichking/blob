@@ -6,13 +6,14 @@ from flask_restful import Api
 from blob_server.database import get_session_registry, get_engine
 from blob_server.app_config import Config
 from blob_server.models import BlogPost, Tag
-from blob_server.resources import PostResource
+from blob_server.resources import PostsResource, PostResource
 
 
 def add_resources(app):
     """adds /posts endpoint"""
     api = Api(app)
-    api.add_resource(PostResource, '/posts')
+    api.add_resource(PostsResource, '/posts')
+    api.add_resource(PostResource, '/posts/<int:post_id>')
 
 
 def add_admin_interface(app):
