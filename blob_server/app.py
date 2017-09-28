@@ -6,7 +6,11 @@ from flask_restful import Api
 from blob_server.database import get_session_registry, get_engine
 from blob_server.app_config import Config
 from blob_server.models import BlogPost, Tag
-from blob_server.resources import PostsResource, PostResource
+from blob_server.resources import (
+    PostsResource,
+    PostResource,
+    TagsResource,
+    TagResource)
 
 
 def add_resources(app):
@@ -14,6 +18,8 @@ def add_resources(app):
     api = Api(app)
     api.add_resource(PostsResource, '/posts')
     api.add_resource(PostResource, '/posts/<int:post_id>')
+    api.add_resource(TagsResource, '/tags')
+    api.add_resource(TagResource, '/tags/<int:tag_id>')
 
 
 def add_admin_interface(app):
