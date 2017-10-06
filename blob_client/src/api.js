@@ -1,5 +1,3 @@
-
-
 export async function getBlogPosts() {
     const url = '/posts';
     const resp = await fetch(
