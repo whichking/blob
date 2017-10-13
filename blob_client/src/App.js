@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { getBlogPosts } from './api.js';
+import { Tag } from "./components/tags"
 
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
           <div>
               {this.state.posts.map(post => <p>{JSON.stringify(post)}</p>)}
           </div>
+          <Tag tag={{'id': 1, 'name': 'great_tag'}}/>
       </div>
     );
   }
