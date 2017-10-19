@@ -7,4 +7,4 @@ services:
       POSTGRES_USER: ${BLOB_SQL_USER}
       POSTGRES_DB: ${BLOB_SQL_DB_NAME}
     ports:
-      - "${BLOB_SQL_DB_PORT}: 5432"
+      - "${BLOB_SQL_DB_PORT}:5432"
