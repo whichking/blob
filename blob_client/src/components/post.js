@@ -37,3 +37,13 @@ export function Post(props) {
     )
 }
 
+
+export function Posts(props) {
+    const divStyle = {display: "flex", flexFlow: "column"};
+    return(
+       <div style={divStyle}>
+           {props.posts.map((post) => <Post post={{'content':post.content, 'tags':post.tags}}/>)}
+       </div>
+   )
+}
+

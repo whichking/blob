@@ -3,21 +3,34 @@ import logo from './logo.svg';
 import ReactMarkdown from 'react-markdown';
 import './App.css';
 import { getBlogPosts } from './api.js';
-import { Tags } from "./components/tags"
-import { PostBody, Post } from "./components/post"
+import { Tags } from "./components/tags";
+import { PostBody, Post, Posts } from "./components/post";
 
 
 let input = '# heading! \n\n**bold!** \n\n*italics!* \n\n![cow](http://www.healthbasics.net/wp-content/uploads/2015/07/cow-400x400.jpg "cow") \n\n```code block!```';
 
-let testPost = {
-    'content': 'foo',
-    'id': 1,
-    'created': '01-01-1900',
-    'tags': [
-        {'id': 1, 'name': 'a tag'},
-        {'id': 2, 'name': 'another tag'}
-    ]
-};
+let testPosts =
+    [
+        {
+            'content': 'foo',
+            'id': 1,
+            'created': '01-01-1900',
+            'tags': [
+                {'id': 1, 'name': 'a tag'},
+                {'id': 2, 'name': 'another tag'}
+            ]
+        },
+        {
+            'content': 'bar',
+            'id': 2,
+            'created': '01-02-1900',
+            'tags': [
+                {'id': 1, 'name': 'a tag'},
+                {'id': 2, 'name': 'another tag'}
+            ]
+        }
+    ];
+
 
 class App extends Component {
     constructor(props) {
@@ -40,7 +53,7 @@ class App extends Component {
           <ReactMarkdown source={input} />
           <Tags tags={[{'id': 1, 'name': 'great_tag'}, {'id': 2, 'name': 'okay tag'}]} />
           <PostBody text='postbody test text'/>
-          <Post post={testPost} />
+          <Posts posts={testPosts} />
       </div>
     );
   }
