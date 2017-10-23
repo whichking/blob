@@ -4,6 +4,7 @@ export async function getBlogPosts() {
         url,
         {'headers': {'Content-Type': 'application/json'}},
     );
+    debugger
     return await resp.json();
 }
 
