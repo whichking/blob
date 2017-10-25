@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {getTags} from "../api";
 
 
 
@@ -30,4 +31,20 @@ export function Tags(props) {
             {props.tags.map((tag) => <Tag tag={{'id':tag.id, 'name':tag.name}}/>)}
         </div>
     )
+}
+
+
+export class TagContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {tags: []}
+    }
+    componentWillMount() {
+        getTags().then(tags => this.setState({tags: tags}));
+    }
+    render() {
+        return (
+            <Tags tags={this.state.tags}/>
+        )
+    }
 }

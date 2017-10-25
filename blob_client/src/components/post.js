@@ -41,6 +41,7 @@ export function Post(props) {
 
 export function Posts(props) {
     const divStyle = {display: "flex", flexFlow: "column"};
+    debugger
     return (
        <div style={divStyle}>
            {props.posts.map((post) => <Post post={{'content':post.content, 'tags':post.tags}}/>)}
@@ -49,15 +50,13 @@ export function Posts(props) {
 }
 
 
-class PostContainer extends Component {
+export class PostContainer extends Component {
     constructor(props) {
-        super(props)
-        this.state = {}
+        super(props);
+        this.state = {posts: []}
     }
     componentWillMount() {
-        this.setState({
-            posts: getBlogPosts()
-        })
+        getBlogPosts().then(posts => this.setState({posts: posts}));
     }
     render() {
         return (
