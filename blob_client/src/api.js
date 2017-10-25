@@ -16,3 +16,13 @@ export async function getBlogPost(id) {
     );
     return await resp.json();
 }
+
+export async function getTags() {
+    debugger
+    const url = '/tags';
+    const resp = await fetch(
+        url,
+        {'headers': {'Content-Type': 'application/json'}},
+    )
+    return await resp.json();
+}
