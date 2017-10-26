@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import ReactMarkdown from 'react-markdown';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import './App.css';
 import { getBlogPosts } from './api.js';
 import { Tags, TagContainer } from "./components/tags";
@@ -38,15 +39,15 @@ class App extends Component {
     }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-          <ReactMarkdown source={input} />
-          <PostContainer />
-          <TagContainer />
-      </div>
+         <div className="App">
+             <header className="App-header">
+                 <img src={logo} className="App-logo" alt="logo" />
+                 <h1 className="App-title">Welcome to React</h1>
+             </header>
+             <Router>
+                 <PostsView/>
+             </Router>
+         </div>
     );
   }
 }
