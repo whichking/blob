@@ -6,6 +6,8 @@ import './App.css';
 import { getBlogPosts } from './api.js';
 import { Tags, TagContainer } from "./components/tags";
 import { PostBody, Post, Posts, PostContainer } from "./components/post";
+import { PostsView } from "./containers/posts"
+import { TagsView } from "./containers/tags"
 
 
 let input = '# heading! \n\n**bold!** \n\n*italics!* \n\n![cow](http://www.healthbasics.net/wp-content/uploads/2015/07/cow-400x400.jpg "cow") \n\n```code block!```';
@@ -45,7 +47,8 @@ class App extends Component {
                  <h1 className="App-title">Welcome to React</h1>
              </header>
              <Router>
-                 <PostsView/>
+                 <PostsView />
+                 <TagsView />
              </Router>
          </div>
     );
