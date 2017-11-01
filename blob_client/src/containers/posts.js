@@ -1,6 +1,7 @@
+import React from 'react'
 import { PostContainer } from "../components/post"
 
-function PostsView(props) {
+export function PostsView(props) {
     return (
         <div>
             <PostContainer />
