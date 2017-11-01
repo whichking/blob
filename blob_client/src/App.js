@@ -47,8 +47,17 @@ class App extends Component {
                  <h1 className="App-title">Welcome to React</h1>
              </header>
              <Router>
-                 <PostsView />
-                 <TagsView />
+                 <div>
+                     <ul>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/posts">Posts</Link></li>
+                        <li><Link to="/tags">Tags</Link></li>
+                     </ul>
+
+                     <Route exact path="/" component={PostsView}/>
+                     <Route path="/posts" component={PostsView}/>
+                     <Route path="/tags" component={TagsView}/>
+                 </div>
              </Router>
          </div>
     );
