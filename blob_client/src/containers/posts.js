@@ -8,3 +8,10 @@ export function PostsView(props) {
         </div>
     )
 }
+
+export const PostView = ({ match }) => (
+
+    <div>
+        <h3>ID: {match.params.id}</h3>
+    </div>
+)
