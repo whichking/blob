@@ -6,8 +6,8 @@ import './App.css';
 import { getBlogPosts } from './api.js';
 import { Tags, TagContainer } from "./components/tags";
 import { PostBody, Post, Posts, PostContainer } from "./components/post";
-import { PostsView } from "./containers/posts"
-import { TagsView } from "./containers/tags"
+import { PostsView, PostView } from "./containers/posts"
+import { TagsView, TagView } from "./containers/tags"
 
 
 let input = '# heading! \n\n**bold!** \n\n*italics!* \n\n![cow](http://www.healthbasics.net/wp-content/uploads/2015/07/cow-400x400.jpg "cow") \n\n```code block!```';
@@ -52,11 +52,14 @@ class App extends Component {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/posts">Posts</Link></li>
                         <li><Link to="/tags">Tags</Link></li>
+                         <li><Link to="/tags/1">Tag1</Link></li>
                      </ul>
 
                      <Route exact path="/" component={PostsView}/>
                      <Route path="/posts" component={PostsView}/>
                      <Route path="/tags" component={TagsView}/>
+                     <Route path="tags/:id" component={TagView}/>
+                     <Route path="posts/:id" component={PostView}/>
                  </div>
              </Router>
          </div>

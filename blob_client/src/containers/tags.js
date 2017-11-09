@@ -8,3 +8,9 @@ export function TagsView(props) {
         </div>
     )
 }
+
+export const TagView = ({ match }) => (
+    <div>
+        <h3>ID: {match.params.id}</h3>
+    </div>
+);
